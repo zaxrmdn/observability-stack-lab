@@ -6,7 +6,7 @@ Infrastruktur monitoring ini didesain ringkas dan cepat agar dapat diselesaikan 
 
 ---
 
-## 🏗️ Arsitektur Monitoring Stack
+## Arsitektur Monitoring Stack
 
 Lab ini menggabungkan 5 komponen utama yang saling terintegrasi:
 1. **Node Exporter:** Agen pengumpul data metrik internal sistem operasi Linux host.
@@ -17,7 +17,7 @@ Lab ini menggabungkan 5 komponen utama yang saling terintegrasi:
 
 ---
 
-## 📌 Persyaratan Sistem (Prerequisites)
+## Persyaratan Sistem (Prerequisites)
 
 Sebelum memulai, pastikan lingkungan kerja Anda memenuhi kriteria berikut:
 * **OS:** Linux (Ubuntu 20.04/22.04 LTS sangat disarankan), macOS, atau Windows dengan WSL2.
@@ -26,11 +26,3 @@ Sebelum memulai, pastikan lingkungan kerja Anda memenuhi kriteria berikut:
 * **Akses:** Hak akses untuk menjalankan perintah `sudo` di terminal.
 
 ---
-
-## 🚀 Langkah-Langkah Instalasi Fast-Track
-
-### 1. Kloning & Persiapan Struktur Folder
-Buka terminal Anda, lalu buat struktur direktori proyek terisolasi berikut:
-```bash
-mkdir -p ~/observability-lab/{prometheus,loki,promtail}
-cd ~/observability-lab

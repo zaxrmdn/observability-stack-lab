@@ -2,7 +2,7 @@
 
 Repositori ini berisi panduan praktikum mandiri dan berkas konfigurasi siap pakai untuk membangun **Full-Stack Observability** (Metrik, Log, dan Alerting) pada server Linux menggunakan Docker Compose. 
 
-Infrastruktur monitoring ini didesain ringkas dan cepat agar dapat diselesaikan dalam sesi workshop berdurasi 4 jam.
+Infrastruktur monitoring ini didesain ringkas dan cepat .
 
 ---
 

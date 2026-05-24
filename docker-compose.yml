@@ -1,0 +1,68 @@
+version: '3.8'
+
+networks:
+  monitoring:
+    driver: bridge
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: lab-prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: lab-node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($|/)'
+    ports:
+      - "9100:9100"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: lab-grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:latest
+    container_name: lab-loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: lab-promtail
+    volumes:
+      - /var/log:/var/log:ro
+      - ./promtail/promtail-config.yml:/etc/promtail/promtail-config.yml
+    command: -config.file=/etc/promtail/promtail-config.yml
+    networks:
+      - monitoring
+    restart: unless-stopped
